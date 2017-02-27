@@ -15,10 +15,6 @@ import java.util.IllegalFormatException;
 import java.util.Scanner;
 
 public class ReadShapeFile {
-	
-	//TODO:  You will likely need to write four methods here.  One method to construct each shape
-	//given the Scanner passed as a parameter.  I would suggest four static methods in this case.
-
 	/**
 	 * Construct a new circle object from a scanner input
 	 * @param in the scanner of the file
@@ -75,6 +71,61 @@ public class ReadShapeFile {
 		return new Oval(insertionTime, px, py, vx, vy, width, height, clr, filled);
 	}
 
+    /**
+     * Construct a new square object from a scanner input
+     * @param in the scanner of the file
+     * @return newly constructed square
+     */
+	private static Square constructSquare(Scanner in) {
+        in.skip("square");
+        // position and velocity
+        int px = in.nextInt();
+        int py = in.nextInt();
+        int vx = in.nextInt();
+        int vy = in.nextInt();
+        // should be filled
+        boolean filled = in.nextBoolean();
+        // diameter
+        int side = in.nextInt();
+        // red, green and blue colour values
+        int r = in.nextInt();
+        int g = in.nextInt();
+        int b = in.nextInt();
+        // insertion time
+        int insertionTime = in.nextInt();
+        Color clr = new Color(r, g, b);
+
+        return new Square(insertionTime, px, py, vx, vy, side, clr, filled);
+    }
+
+    /**
+     * Construct a new square object from a scanner input
+     * @param in the scanner of the file
+     * @return newly constructed square
+     */
+    private static Rect constructRect(Scanner in) {
+        in.skip("rect");
+        // position and velocity
+        int px = in.nextInt();
+        int py = in.nextInt();
+        int vx = in.nextInt();
+        int vy = in.nextInt();
+        // should be filled
+        boolean filled = in.nextBoolean();
+        // width and height
+        int width = in.nextInt();
+        int height = in.nextInt();
+        // red, green and blue colour values
+        int r = in.nextInt();
+        int g = in.nextInt();
+        int b = in.nextInt();
+        // insertion time
+        int insertionTime = in.nextInt();
+        Color clr = new Color(r, g, b);
+
+        return new Rect(insertionTime, px, py, vx, vy, width, height, clr, filled);
+    }
+
 	/**
 	 * Reads the data file used by the program and returns the constructed queue
 	 * @param in the scanner of the file
@@ -86,19 +137,34 @@ public class ReadShapeFile {
 		while (in.hasNextLine()) {
 			String line = in.nextLine();
 			String shape = line.split(" ")[0];
+            Scanner lineScanner = new Scanner(line);
 			switch (shape) {
 				case "circle": {
-					Circle c = ReadShapeFile.constructCircle(new Scanner(line));
+					Circle c = ReadShapeFile.constructCircle(lineScanner);
 					shapeQueue.enqueue(c);
 
 					break;
 				}
 				case "oval": {
-					Oval o = ReadShapeFile.constructOval(new Scanner(line));
+					Oval o = ReadShapeFile.constructOval(lineScanner);
 					shapeQueue.enqueue(o);
 
 					break;
 				}
+                case "square": {
+                    Square s = ReadShapeFile.constructSquare(lineScanner);
+                    System.out.println(s);
+                    shapeQueue.enqueue(s);
+
+                    break;
+                }
+                case "rect": {
+                    Rect r = ReadShapeFile.constructRect(lineScanner);
+                    System.out.println(r);
+                    shapeQueue.enqueue(r);
+
+                    break;
+                }
 			}
 		}
 		

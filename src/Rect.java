@@ -75,7 +75,7 @@ public class Rect extends ClosedShape {
     public String toString() {
         String result = "This is a square\n";
         result += super.toString ();
-        result += "It has a width of " + width + " and a height of " + height + \n";
+        result += "It has a width of " + width + " and a height of " + height + "\n";
 
         return result;
     }
