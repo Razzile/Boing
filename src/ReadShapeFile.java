@@ -6,8 +6,12 @@
  *
  */
 
+import com.sun.javaws.exceptions.InvalidArgumentException;
+import com.sun.tools.javah.Util;
+
 import java.awt.Color;
 import java.io.*;
+import java.util.IllegalFormatException;
 import java.util.Scanner;
 
 public class ReadShapeFile {
@@ -21,6 +25,7 @@ public class ReadShapeFile {
 	 * @return newly constructed circle
 	 */
 	private static Circle constructCircle(Scanner in) {
+		in.skip("circle");
 		// position and velocity
 		int px = in.nextInt();
 		int py = in.nextInt();
@@ -36,7 +41,6 @@ public class ReadShapeFile {
 		int b = in.nextInt();
 		// insertion time
 		int insertionTime = in.nextInt();
-
 		Color clr = new Color(r, g, b);
 
 		return new Circle(insertionTime, px, py, vx, vy, diameter, clr, filled);
@@ -48,6 +52,7 @@ public class ReadShapeFile {
 	 * @return newly constructed oval
 	 */
 	private static Oval constructOval(Scanner in) {
+		in.skip("oval");
 		// position and velocity
 		int px = in.nextInt();
 		int py = in.nextInt();
@@ -78,7 +83,24 @@ public class ReadShapeFile {
 	private static Queue readDataFile (Scanner in) {
 		Queue shapeQueue = new Queue ();
 		
-		//TODO:  Your loop goes here.
+		while (in.hasNextLine()) {
+			String line = in.nextLine();
+			String shape = line.split(" ")[0];
+			switch (shape) {
+				case "circle": {
+					Circle c = ReadShapeFile.constructCircle(new Scanner(line));
+					shapeQueue.enqueue(c);
+
+					break;
+				}
+				case "oval": {
+					Oval o = ReadShapeFile.constructOval(new Scanner(line));
+					shapeQueue.enqueue(o);
+
+					break;
+				}
+			}
+		}
 		
 		return shapeQueue;
 	}
@@ -89,21 +111,19 @@ public class ReadShapeFile {
 	 * @param filename the name of the file
 	 * @return the queue of shapes from the file
 	 */
-	public static Queue readFile (String filename) throws FileNotFoundException {
-		File file = new File(filename);
-		if (!file.exists()) {
-			throw new FileNotFoundException("input file not found");
-		}
+	public static Queue readFile (String filename) {
+		Scanner in = null;
+		try {
+            File file = new File(filename);
 
-		Scanner in = new Scanner(file);
-		
-		//TODO:  Read the input file specified by "filename" and return a queue containing
-		//All of the shapes specified in this file
-		
-		//WARNING:  Do not put all of the code to read the file in this method.  Please,
-		//break it up into smaller methods.  If you put all the code to read the file here
-		//you'll lose style marks and it will be much, much harder to program.  
-		
-		return ReadShapeFile.readDataFile(in);
+            in = new Scanner(file);
+        } catch (FileNotFoundException e) {
+            System.err.println("Error: File not found");
+            System.exit(1);
+        } catch (Exception e) {
+			System.err.println(e.getMessage());
+			System.exit(1);
+		}
+        return ReadShapeFile.readDataFile(in);
 	}
 }
