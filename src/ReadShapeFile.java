@@ -6,12 +6,8 @@
  *
  */
 
-import com.sun.javaws.exceptions.InvalidArgumentException;
-import com.sun.tools.javah.Util;
-
 import java.awt.Color;
 import java.io.*;
-import java.util.IllegalFormatException;
 import java.util.Scanner;
 
 public class ReadShapeFile {
