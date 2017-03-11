@@ -35,6 +35,8 @@ I also had to research the `Polygon` API in the java SDK. Find below my steps of
   - use the pentagon height formula (height = side / 2 * sqrt(5 + 2) * sqrt(5)) for method overloads `getHeight()` and `getWidth()`
   - calculate points of indicies by using formula x=(72 * cos(2pi/5 * n)) and y=(72 * sin(2pi/5 * n)) where n is the current side. This was done in a for loop from 0 .. 5 for each side of the pentagon. These points were added to a `Polygon` object using `addPoint(point)`
   - to draw the polygon I used the `drawPolygon(polygon)` and `fillPolygon(polygon)` methods of the `Graphics` class.
+  
+The pentagon format in the txt file mirrors that of square, the only difference being the shape saying pentagon instead of square.
 
 ### Flashing shapes
 
