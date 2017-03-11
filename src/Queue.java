@@ -13,20 +13,21 @@ import java.util.NoSuchElementException;
 public class Queue {
 
 	//TODO:  You need some data to store the queue.  Put the attributes here.
-	
+	QueueElement first;
+	QueueElement last;
 	/**
 	 * Constructs an empty Queue.
 	 */
 	public Queue () {
-		//TODO:  Queue needs to be initialized to an empty Queue.
+		this.first = null;
+		this.last = null;
 	}
 	
 	/**
 	 * Returns true if the queue is empty
 	 */
 	public boolean isEmpty () {
-		//TODO:  Needs to return true when empty and false otherwise
-		return true; //DELETE AND CHANGE TO SOMETHING SENISBLE
+		return (first == null);
 	}
 	
 	/**
@@ -37,28 +38,50 @@ public class Queue {
 	 * Returns the element at the head of the queue
 	 */
 	public Object peek () throws NoSuchElementException {
-		//TODO:  Returns the front of the queue if it exists and throws an exception otherwise
-		return null; //DELETE AND CHANGE TO SOMETHING SENSIBLE
+		if (!isEmpty()) {
+			return first.getElement();
+		} else {
+			throw new NoSuchElementException("No element at head of queue");
+		}
 	}
 	
 	/**
 	 * Removes the front element of the queue
 	 */
 	public void dequeue () throws NoSuchElementException {
-		//TODO:  Removes the front front of the queue if it exists and throws an exception otherwise
+		if (!isEmpty()) {
+			first = first.getNext();
+		} else {
+			throw new NoSuchElementException("No element at head of queue");
+		}
 	}
 	
 	/**
 	 * Puts an element on the back of the queue.
 	 */
 	public void enqueue (Object element) {
-		//TODO:  Puts an element on the back of the queue.
+		QueueElement next = new QueueElement(element, null);
+		if (isEmpty()) {
+			first = next;
+		} else {
+			last.setNext(next);
+		}
+		last = next;
+		last.setNext(null);
 	}
 	
 	/**
 	 * Method to print the full contents of the queue in order from head to tail.
 	 */
 	public void print () {
-		//TODO:  Prints out the full queue.  If empty prints out a line saying so.
+		QueueElement elem = first;
+		if (elem == null) {
+			System.out.println("Queue is empty");
+		} else {
+			while (elem != null) {
+				System.out.println(elem.getElement().toString());
+				elem = elem.getNext();
+			}
+		}
 	}
 }
