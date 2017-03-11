@@ -23,19 +23,32 @@ public class ReadShapeFile {
 		int py = in.nextInt();
 		int vx = in.nextInt();
 		int vy = in.nextInt();
-		// should be filled
-		boolean filled = in.nextBoolean();
 		// diameter
 		int diameter = in.nextInt();
+
+		// should be filled
+		boolean filled = in.nextBoolean();
+		// should flash
+		boolean flash = in.nextBoolean();
 		// red, green and blue colour values
 		int r = in.nextInt();
 		int g = in.nextInt();
 		int b = in.nextInt();
+		Color primary = new Color(r, g, b);
+		// if flashing define secondary
+		Color secondary = null;
+		if (flash) {
+			r = in.nextInt();
+			g = in.nextInt();
+			b = in.nextInt();
+
+			secondary = new Color(r, g, b);
+		}
 		// insertion time
 		int insertionTime = in.nextInt();
-		Color clr = new Color(r, g, b);
 
-		return new Circle(insertionTime, px, py, vx, vy, diameter, clr, filled);
+
+		return new Circle(insertionTime, px, py, vx, vy, diameter, primary, secondary, filled);
 	}
 
 	/**
@@ -50,21 +63,30 @@ public class ReadShapeFile {
 		int py = in.nextInt();
 		int vx = in.nextInt();
 		int vy = in.nextInt();
-		// should be filled
-		boolean filled = in.nextBoolean();
 		// width and height
 		int width = in.nextInt();
 		int height = in.nextInt();
+		// should be filled
+		boolean filled = in.nextBoolean();
+		// should flash
+		boolean flash = in.nextBoolean();
 		// red, green and blue colour values
 		int r = in.nextInt();
 		int g = in.nextInt();
 		int b = in.nextInt();
+		Color primary = new Color(r, g, b);
+		// if flashing define secondary
+		Color secondary = null;
+		if (flash) {
+			r = in.nextInt();
+			g = in.nextInt();
+			b = in.nextInt();
+
+			secondary = new Color(r, g, b);
+		}
 		// insertion time
 		int insertionTime = in.nextInt();
-
-		Color clr = new Color(r, g, b);
-
-		return new Oval(insertionTime, px, py, vx, vy, width, height, clr, filled);
+		return new Oval(insertionTime, px, py, vx, vy, width, height, primary, secondary, filled);
 	}
 
     /**
@@ -79,19 +101,30 @@ public class ReadShapeFile {
         int py = in.nextInt();
         int vx = in.nextInt();
         int vy = in.nextInt();
+		// side length
+		int side = in.nextInt();
         // should be filled
-        boolean filled = in.nextBoolean();
-        // diameter
-        int side = in.nextInt();
-        // red, green and blue colour values
-        int r = in.nextInt();
-        int g = in.nextInt();
-        int b = in.nextInt();
-        // insertion time
-        int insertionTime = in.nextInt();
-        Color clr = new Color(r, g, b);
+		boolean filled = in.nextBoolean();
+		// should flash
+		boolean flash = in.nextBoolean();
+		// red, green and blue colour values
+		int r = in.nextInt();
+		int g = in.nextInt();
+		int b = in.nextInt();
+		Color primary = new Color(r, g, b);
+		// if flashing define secondary
+		Color secondary = null;
+		if (flash) {
+			r = in.nextInt();
+			g = in.nextInt();
+			b = in.nextInt();
 
-        return new Square(insertionTime, px, py, vx, vy, side, clr, filled);
+			secondary = new Color(r, g, b);
+		}
+		// insertion time
+		int insertionTime = in.nextInt();
+
+        return new Square(insertionTime, px, py, vx, vy, side, primary, secondary, filled);
     }
 
     /**
@@ -106,20 +139,31 @@ public class ReadShapeFile {
         int py = in.nextInt();
         int vx = in.nextInt();
         int vy = in.nextInt();
+		// width and height
+		int width = in.nextInt();
+		int height = in.nextInt();
         // should be filled
-        boolean filled = in.nextBoolean();
-        // width and height
-        int width = in.nextInt();
-        int height = in.nextInt();
-        // red, green and blue colour values
-        int r = in.nextInt();
-        int g = in.nextInt();
-        int b = in.nextInt();
-        // insertion time
-        int insertionTime = in.nextInt();
-        Color clr = new Color(r, g, b);
+		boolean filled = in.nextBoolean();
+		// should flash
+		boolean flash = in.nextBoolean();
+		// red, green and blue colour values
+		int r = in.nextInt();
+		int g = in.nextInt();
+		int b = in.nextInt();
+		Color primary = new Color(r, g, b);
+		// if flashing define secondary
+		Color secondary = null;
+		if (flash) {
+			r = in.nextInt();
+			g = in.nextInt();
+			b = in.nextInt();
 
-        return new Rect(insertionTime, px, py, vx, vy, width, height, clr, filled);
+			secondary = new Color(r, g, b);
+		}
+		// insertion time
+		int insertionTime = in.nextInt();
+
+        return new Rect(insertionTime, px, py, vx, vy, width, height, primary, secondary, filled);
     }
 
     private static Pentagon constructPentagon(Scanner in) {
@@ -129,19 +173,29 @@ public class ReadShapeFile {
 		int py = in.nextInt();
 		int vx = in.nextInt();
 		int vy = in.nextInt();
-		// should be filled
-		boolean filled = in.nextBoolean();
-		// diameter
+		// side length
 		int side = in.nextInt();
+		boolean filled = in.nextBoolean();
+		// should flash
+		boolean flash = in.nextBoolean();
 		// red, green and blue colour values
 		int r = in.nextInt();
 		int g = in.nextInt();
 		int b = in.nextInt();
+		Color primary = new Color(r, g, b);
+		// if flashing define secondary
+		Color secondary = null;
+		if (flash) {
+			r = in.nextInt();
+			g = in.nextInt();
+			b = in.nextInt();
+
+			secondary = new Color(r, g, b);
+		}
 		// insertion time
 		int insertionTime = in.nextInt();
-		Color clr = new Color(r, g, b);
 
-		return new Pentagon(insertionTime, px, py, vx, vy, side, clr, filled);
+		return new Pentagon(insertionTime, px, py, vx, vy, side, primary, secondary, filled);
 	}
 
 	/**
@@ -156,38 +210,30 @@ public class ReadShapeFile {
 			String line = in.nextLine();
 			String shape = line.split(" ")[0];
             Scanner lineScanner = new Scanner(line);
+			ClosedShape obj = null;
 			switch (shape) {
 				case "circle": {
-					Circle c = constructCircle(lineScanner);
-					shapeQueue.enqueue(c);
-
+					obj = constructCircle(lineScanner);
 					break;
 				}
 				case "oval": {
-					Oval o = constructOval(lineScanner);
-					shapeQueue.enqueue(o);
-
+					obj = constructOval(lineScanner);
 					break;
 				}
                 case "square": {
-                    Square s = constructSquare(lineScanner);
-                    shapeQueue.enqueue(s);
-
+                    obj = constructSquare(lineScanner);
                     break;
                 }
                 case "rect": {
-                    Rect r = constructRect(lineScanner);
-                    shapeQueue.enqueue(r);
-
+                    obj = constructRect(lineScanner);
                     break;
                 }
 				case "pentagon": {
-					Pentagon p = constructPentagon(lineScanner);
-					shapeQueue.enqueue(p);
-
+					obj = constructPentagon(lineScanner);
 					break;
 				}
 			}
+			shapeQueue.enqueue(obj);
 		}
 		
 		return shapeQueue;
