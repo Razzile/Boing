@@ -62,10 +62,11 @@ public class Rect extends ClosedShape {
      * @param g The graphics object associated with the drawing component.
      */
     public void draw(Graphics g) {
+        g.setColor(colour);
         if (isFilled) {
             g.fillRect(xPos, yPos, width, height);
         } else {
-            g.fillRect(xPos, yPos, width, height);
+            g.drawRect(xPos, yPos, width, height);
         }
     }
 

@@ -59,10 +59,11 @@ public class Square extends ClosedShape {
      * @param g The graphics object associated with the drawing component.
      */
     public void draw(Graphics g) {
+        g.setColor(colour);
         if (isFilled) {
             g.fillRect(xPos, yPos, side, side);
         } else {
-            g.fillRect(xPos, yPos, side, side);
+            g.drawRect(xPos, yPos, side, side);
         }
     }
 
