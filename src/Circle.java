@@ -26,11 +26,12 @@ public class Circle extends ClosedShape {
      * @param vx The display component's x velocity.
      * @param vy The display component's y velocity.
      * @param diameter The diameter of the circle.
-     * @param colour The line colour or fill colour.
+     * @param primaryColour The primary line colour or fill colour.
+	 * @param secondaryColour The secondary line colour or fill colour.
      * @param isFilled True if the circle is filled with colour, false if opaque.
      */
-    public Circle (int insertionTime, int x, int y, int vx, int vy, int diameter, Color colour, boolean isFilled) {
-    	super (insertionTime, x, y, vx, vy, colour, isFilled);
+    public Circle (int insertionTime, int x, int y, int vx, int vy, int diameter, Color primaryColour, Color secondaryColour, boolean isFilled) {
+    	super (insertionTime, x, y, vx, vy, primaryColour, secondaryColour, isFilled);
     	this.diameter = diameter;
     }
     
@@ -45,7 +46,7 @@ public class Circle extends ClosedShape {
     }
     
     /**
-     * @param Resets the diameter.
+     * @param diameter the diameter.
      */
     public void setDiameter (int diameter) {
     	this.diameter = diameter;
@@ -77,7 +78,7 @@ public class Circle extends ClosedShape {
      * @param g The graphics object of the drawable component.
      */
     public void draw (Graphics g) {
-    	g.setColor( colour );
+    	g.setColor( primaryColour );
     	if (isFilled) {
     		g.fillOval( xPos, yPos, diameter, diameter );
     	} 

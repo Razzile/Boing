@@ -1,7 +1,8 @@
 /**
  * ClosedShape.java
+ *
  * @version 2.0.0
- * Originally written by Bette Bultena but heavily modified for the purposes of 
+ * Originally written by Bette Bultena but heavily modified for the purposes of
  * CSC-115 (Daniel Archambault and Liam O'Reilly)
  */
 
@@ -17,248 +18,284 @@ import java.awt.*;
  */
 
 public class ClosedShape {
-	
-	/**
-	 *  The x position of the Shape.
-	 */
-	protected int xPos;
- 	/**
- 	 * The y position of the Shape.
- 	 */
- 	protected int yPos;
 
-	/**
-	 *  The x position of the Shape.
-	 */
-	protected int xVec;
-	
-	/**
-	 * The y position of the Shape.
-	 */
-	protected int yVec;
+    /**
+     *  The x position of the Shape.
+     */
+    protected int xPos;
+    /**
+     * The y position of the Shape.
+     */
+    protected int yPos;
 
-	/**
-	 * The line colour of the shape, or the filled in
-	 * colour if the Shape has fill.
-	 */
-	protected Color colour;
+    /**
+     *  The x position of the Shape.
+     */
+    protected int xVec;
 
-	/**
-	 * Determines if the Shape has a fill colour or not.
-	 */
-	protected boolean isFilled;
+    /**
+     * The y position of the Shape.
+     */
+    protected int yVec;
 
-	/**
-	 * Encodes the insertion time into the scene
-	 */
-	private int insertionTime;
-	
-	/**
-	 * Creates a closed shape object.
-	 * @param x The x position.
-	 * @param y the y position.
-	 * @param colour The line or fill colour.
-	 * @param isFilled True if the shape is filled, false if not.
-	 */
-	protected ClosedShape (int insertionTime, int x, int y, int vx, int vy, Color colour, boolean isFilled) {
-		this.xPos = x;
-		this.yPos = y;
-		this.xVec = vx;
-		this.yVec = vy;
-		this.colour = colour;
-		this.isFilled = isFilled;
-		this.insertionTime = insertionTime;
-	}
-	
-	/**
-	 * The method returns a string suitable for printing.
-	 * @return string to print out shape.
-	 */
-	public String toString () {
-		String result = "";
-		result += "Its position is " + xPos + " " + yPos + "\n";
-		result += "Its velocity is " + xVec + " " + yVec + "\n";
-		result += "Its colour is " + colour + "\n";
-		if (isFilled)
-			result += "It is filled" + "\n";
-		else
-			result += "It is not filled" + "\n";
-		result += "It should be inserted at " + insertionTime + "\n";
-		return result;
-	}
+    /**
+     * The line colour of the shape, or the filled in
+     * colour if the Shape has fill.
+     */
+    protected Color primaryColour;
+    protected Color secondaryColour;
 
-	/**
-	 * Resets the x position.
-	 */
- 	public void setX (int x) {
-		this.xPos = x;
-	}
+    /**
+     * Determines if the Shape has a fill colour or not.
+     */
+    protected boolean isFilled;
 
- 	/**
- 	 * Resets the y position.
- 	 */
- 	public void setY (int y) {
-		this.yPos = y;
-	}
+    /**
+     * Encodes the insertion time into the scene
+     */
+    private int insertionTime;
 
-	/**
-	 * Resets the x vector
-	 */
-	 public void setVecX (int x) {
-		this.xVec = x;
-	 }//end setVecX
+    /**
+     * Creates a closed shape object.
+     * @param x The x position.
+     * @param y the y position.
+     * @param primary Primary colour.
+     * @param secondary Secondary colour
+     * @param isFilled True if the shape is filled, false if not.
+     */
+    protected ClosedShape(int insertionTime, int x, int y, int vx, int vy, Color primary, Color secondary,  boolean isFilled) {
+        this.xPos = x;
+        this.yPos = y;
+        this.xVec = vx;
+        this.yVec = vy;
+        this.primaryColour = primary;
+        this.secondaryColour = secondary; // may be null
+        this.isFilled = isFilled;
+        this.insertionTime = insertionTime;
+    }
 
-	/**
-	 * Resets the y position.
-	 */
-	 public void setVecY (int y) {
-		this.yVec = y;
-	}//end setVecY
+    /**
+     * The method returns a string suitable for printing.
+     * @return string to print out shape.
+     */
+    public String toString() {
+        String result = "";
+        result += "Its position is " + xPos + " " + yPos + "\n";
+        result += "Its velocity is " + xVec + " " + yVec + "\n";
+        result += "Its primary colour is " + primaryColour + "\n";
+        if (secondaryColour != null) {
+            result += "Its secondary colour is " + secondaryColour + "\n";
+        }
+        if (isFilled)
+            result += "It is filled" + "\n";
+        else
+            result += "It is not filled" + "\n";
+        result += "It should be inserted at " + insertionTime + "\n";
+        return result;
+    }
 
-	 /**
-	  * Resets the colour.
-	  */
-	 public void setColour (Color colour) {
-	 	this.colour = colour;
-	 }
+    /**
+     * Resets the x position.
+     */
+    public void setX(int x) {
+        this.xPos = x;
+    }
 
-	 /**
-	  * Sets the shape to filled.
-	  */
-	 public void setFilled () {
-		 isFilled = true;
-	 }
+    /**
+     * Resets the y position.
+     */
+    public void setY(int y) {
+        this.yPos = y;
+    }
 
-	 /**
-	  * Sets the shape to unfilled.
-	  */
-	 public void unsetFilled () {
-	 	isFilled = false;
-	 }
-	 
-	 /**
-	  * Sets the insertion time.
-	  */
-	 public void setInsertionTime (int time) {
-		 insertionTime = time;
-	 }
+    /**
+     * Resets the x vector
+     */
+    public void setVecX(int x) {
+        this.xVec = x;
+    }//end setVecX
 
-	 /**
-	  * @return The x position value.
-	  */
-	 public int getX() {
-	 	return xPos;
-	 }
+    /**
+     * Resets the y position.
+     */
+    public void setVecY(int y) {
+        this.yVec = y;
+    }//end setVecY
 
-	 /**
-	  * @return The y position value.
-	  */
-	 public int getY() {
-	 	return yPos;
-	 }
+    /**
+     * Resets the colour.
+     */
+    public void setPrimaryColour(Color colour) {
+        this.primaryColour = colour;
+    }
 
-	 /**
-	  * @return The colour.
-	  */
-	 public Color getColour() {
-	 	return colour;
-	 }
+    public void setSecondaryColour(Color colour) {
+        this.secondaryColour = colour;
+    }
 
-	 /**
-	  * @return True if the shape is filled, false if not.
-	  */
-	 public boolean isFilled() {
-	 	return isFilled;
-	 }
-	 
-	 /**
-	  * @return the insertion time.
-	  */
-	 public int getInsertionTime () {
-		 return insertionTime;
-	 }
-    
-	 /**
-	  * Puts the shape back in bounds in X
-	  */
-	 public void putInBoundsX (double winX) {
-	 	if (xPos < 0) xPos = 0;
-	 	if (xPos + this.getWidth() > winX) {
-	 		xPos = (int) (winX - Math.ceil (this.getWidth ()));
-	 	}
-	 }//end inBoundsX;
-    
-	 /**
-	  * Puts the shape back in bounds
-	  */
-	 public void putInBoundsY (double winY) {
-	 	if (yPos < 0) yPos = 0;
-	 	if (yPos + this.getHeight() > winY) {
-	 		yPos = (int) (winY - Math.ceil (this.getHeight ()));
-	 	}
-	 }//end inBoundsY;
+    /**
+     * Sets the shape to filled.
+     */
+    public void setFilled() {
+        isFilled = true;
+    }
 
-	 /**
-	  * Bounces the shape off a vertical wall
-	  */
-	 public void bounceX () {
-	 	xVec = -xVec;
-	 }
+    /**
+     * Sets the shape to unfilled.
+     */
+    public void unsetFilled() {
+        isFilled = false;
+    }
 
-	 /**
-	  * Bounces the shape off a horizontal wall
-	  */
-	 public void bounceY () {
-	 	yVec = -yVec;
-	 }
+    /**
+     * Sets the insertion time.
+     */
+    public void setInsertionTime(int time) {
+        insertionTime = time;
+    }
 
-	 /**
-	  * Returns true if the shapes have gone out of bounds in X
-	  */
-	 public boolean outOfBoundsX (double winX) {
-	 	return (xPos + this.getWidth()> winX) || (xPos < 0);
-	 }
+    /**
+     * @return The x position value.
+     */
+    public int getX() {
+        return xPos;
+    }
 
-	 /**
-	  * Returns true if the shapes have gone out of bounds in Y
-	  */
-	 public boolean outOfBoundsY (double winY) {
-	 	return (yPos + this.getHeight() > winY) || (yPos < 0);
-	 }
+    /**
+     * @return The y position value.
+     */
+    public int getY() {
+        return yPos;
+    }
 
-	 /**
-	  * Takes in a direction and a velocity and moves the shape
-	  * in that direction on unit
-	  */
-	 public void move () {
-	 	xPos += xVec;
-	 	yPos += yVec;
-	 }
+    /**
+     * @return The colour.
+     */
+    public Color getPrimaryColour() {
+        return primaryColour;
+    }
 
-	 /**
-	  * Draws the object to the current component.
-	  * @param g The graphics object associated with the drawing component.
-	  */
-	 public void draw (Graphics g) {
-	 	System.out.println ("You forgot to override this method! (draw)");
-	 	System.out.println ("Don't modify this method.");
-	 }
+    /**
+     * @return The colour.
+     */
+    public Color getSecondaryColour() {
+        return secondaryColour;
+    }
 
-	 /**
-	  * Get the width of the current component
-	  */
-	 public int getWidth () {
-	 	System.out.println ("You forgot to override this method! (getWidth)");
-	 	System.out.println ("Don't modify this method.");
-	 	return 1;
-	 }
+    /**
+     * @return True if the shape is filled, false if not.
+     */
+    public boolean isFilled() {
+        return isFilled;
+    }
 
-	 /**
-	  * Get the width of the current component
-	  */
-	 public int getHeight () {
-	 	System.out.println ("You forgot to override a method! (getHeight)");
-	 	System.out.println ("Don't modify this method.");
-	 	return 1;
-	 }
+    /**
+     * @return the insertion time.
+     */
+    public int getInsertionTime() {
+        return insertionTime;
+    }
+
+    /**
+     * Puts the shape back in bounds in X
+     */
+    public void putInBoundsX(double winX) {
+        if (xPos < 0) xPos = 0;
+        if (xPos + this.getWidth() > winX) {
+            xPos = (int) (winX - Math.ceil(this.getWidth()));
+        }
+    }//end inBoundsX;
+
+    /**
+     * Puts the shape back in bounds
+     */
+    public void putInBoundsY(double winY) {
+        if (yPos < 0) yPos = 0;
+        if (yPos + this.getHeight() > winY) {
+            yPos = (int) (winY - Math.ceil(this.getHeight()));
+        }
+    }//end inBoundsY;
+
+    /**
+     * Bounces the shape off a vertical wall
+     */
+    public void bounceX() {
+        xVec = -xVec;
+    }
+
+    /**
+     * Bounces the shape off a horizontal wall
+     */
+    public void bounceY() {
+        yVec = -yVec;
+    }
+
+    /**
+     * Returns true if the shapes have gone out of bounds in X
+     */
+    public boolean outOfBoundsX(double winX) {
+        return (xPos + this.getWidth() > winX) || (xPos < 0);
+    }
+
+    /**
+     * Returns true if the shapes have gone out of bounds in Y
+     */
+    public boolean outOfBoundsY(double winY) {
+        return (yPos + this.getHeight() > winY) || (yPos < 0);
+    }
+
+    /**
+     * Takes in a direction and a velocity and moves the shape
+     * in that direction on unit
+     */
+    public void move() {
+        xPos += xVec;
+        yPos += yVec;
+    }
+
+    /**
+     * returns true if secondaryColour is not null
+     * @return whether the shape should flash
+     */
+    public boolean shouldFlash() {
+        return (secondaryColour != null);
+    }
+
+    /**
+     * Inverts the primary and secondary colours
+     */
+    public void flipColours() {
+        if (secondaryColour != null) {
+            Color temp = primaryColour;
+            primaryColour = secondaryColour;
+            secondaryColour = temp;
+        }
+    }
+
+    /**
+     * Draws the object to the current component.
+     * @param g The graphics object associated with the drawing component.
+     */
+    public void draw(Graphics g) {
+        System.out.println("You forgot to override this method! (draw)");
+        System.out.println("Don't modify this method.");
+    }
+
+    /**
+     * Get the width of the current component
+     */
+    public int getWidth() {
+        System.out.println("You forgot to override this method! (getWidth)");
+        System.out.println("Don't modify this method.");
+        return 1;
+    }
+
+    /**
+     * Get the width of the current component
+     */
+    public int getHeight() {
+        System.out.println("You forgot to override a method! (getHeight)");
+        System.out.println("Don't modify this method.");
+        return 1;
+    }
 }

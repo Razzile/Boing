@@ -18,11 +18,12 @@ public class Rect extends ClosedShape {
      * @param vy The display component's y velocity.
      * @param width The width of the rectangle.
      * @param height The height of the rectangle.
-     * @param colour The line colour or fill colour.
+     * @param primaryColour The primary line colour or fill colour.
+     * @param secondaryColour The secondary line colour or fill colour.
      * @param isFilled True if the rectangle is filled with colour, false if opaque.
      */
-    public Rect(int insertionTime, int x, int y, int vx, int vy, int width, int height, Color colour, boolean isFilled) {
-        super(insertionTime, x, y, vx, vy, colour, isFilled);
+    public Rect(int insertionTime, int x, int y, int vx, int vy, int width, int height, Color primaryColour, Color secondaryColour, boolean isFilled) {
+        super(insertionTime, x, y, vx, vy, primaryColour, secondaryColour, isFilled);
         this.width = width;
         this.height = height;
     }
@@ -62,7 +63,7 @@ public class Rect extends ClosedShape {
      * @param g The graphics object associated with the drawing component.
      */
     public void draw(Graphics g) {
-        g.setColor(colour);
+        g.setColor(primaryColour);
         if (isFilled) {
             g.fillRect(xPos, yPos, width, height);
         } else {

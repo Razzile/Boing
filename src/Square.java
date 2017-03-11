@@ -17,11 +17,12 @@ public class Square extends ClosedShape {
      * @param vx The display component's x velocity.
      * @param vy The display component's y velocity.
      * @param side The side length of the square.
-     * @param colour The line colour or fill colour.
+     * @param primaryColour The primary line colour or fill colour.
+     * @param secondaryColour The secondary line colour or fill colour.
      * @param isFilled True if the square is filled with colour, false if opaque.
      */
-    public Square(int insertionTime, int x, int y, int vx, int vy, int side, Color colour, boolean isFilled) {
-        super(insertionTime, x, y, vx, vy, colour, isFilled);
+    public Square(int insertionTime, int x, int y, int vx, int vy, int side, Color primaryColour, Color secondaryColour, boolean isFilled) {
+        super(insertionTime, x, y, vx, vy, primaryColour, secondaryColour, isFilled);
         this.side = side;
     }
 
@@ -59,7 +60,7 @@ public class Square extends ClosedShape {
      * @param g The graphics object associated with the drawing component.
      */
     public void draw(Graphics g) {
-        g.setColor(colour);
+        g.setColor(primaryColour);
         if (isFilled) {
             g.fillRect(xPos, yPos, side, side);
         } else {

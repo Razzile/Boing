@@ -26,11 +26,12 @@ public class Oval extends ClosedShape {
 	 * @param vy The display component's y velocity.
 	 * @param width The width of the oval (in pixels).
 	 * @param height The height of the oval (in pixels).
-	 * @param colour The line colour or fill colour.
+	 * @param primaryColour The primary line colour or fill colour.
+	 * @param secondaryColour The secondary line colour or fill colour.
 	 * @param isFilled True if the oval is filled with colour, false if opaque.
 	 */
-	public Oval (int insertionTime, int x, int y, int vx, int vy, int width, int height, Color colour, boolean isFilled) {
-		super (insertionTime, x, y, vx, vy, colour, isFilled);
+	public Oval (int insertionTime, int x, int y, int vx, int vy, int width, int height, Color primaryColour, Color secondaryColour, boolean isFilled) {
+		super (insertionTime, x, y, vx, vy, primaryColour, secondaryColour, isFilled);
 		this.width = width;
 		this.height = height;
 	}
@@ -78,7 +79,7 @@ public class Oval extends ClosedShape {
  	 * @param g The graphics object of the drawable component.
  	 */
 	public void draw (Graphics g) {
-		g.setColor (colour);
+		g.setColor (primaryColour);
 		if (isFilled) {
 			g.fillOval( xPos, yPos, width, height );
 		} 
