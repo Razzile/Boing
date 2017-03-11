@@ -46,6 +46,9 @@ public class BouncingShapesWindow extends JFrame implements ActionListener
 		animationTimer = new Timer(ANIMATION_DELAY, this);
 		// Create a drawing panel based on JPanel (using an anonymous inner class).
 		// We provide a paint method which will draw our shapes.
+		//
+		// There is now a check here for flashing shapes. If a shape should flash invert primary
+		// and secondary colours here.
 		drawingPanel = new JPanel() {
 			private static final long serialVersionUID = 1L;
 			public void paint(Graphics g)
@@ -53,6 +56,10 @@ public class BouncingShapesWindow extends JFrame implements ActionListener
 			    super.paintComponent (g);
 				for (ClosedShape s : activeShapes)
 				{
+					// if the shape should be flashing, invert its colours
+					if (s.shouldFlash()) {
+						s.flipColours();
+					}
 					s.draw(g);
 				}
 			}
