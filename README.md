@@ -25,7 +25,7 @@ A rect at position (10, 20) with initial velocity (5, -5) with width 5 and heigh
 
 definition: `rect 10 10 5 -5 5 10 true true 255 0 0 0 0 255 0`
 
-definition format: `<shape> <x> <y> <vx> <vy> <width> <height> <filled> <flashing> <r> <g> <b> <r2> <b2> <c2> <insertion time>`
+definition format: `<shape> <x> <y> <vx> <vy> <width> <height> <filled> <flashing> <r> <g> <b> <r2> <b2> <g2> <insertion time>`
 
 ### Custom shape
 For my custom shape I decided to implement a pentagon. This proved to be quite a challenge as there was quite a lot of maths involved with drawing the shape. 
