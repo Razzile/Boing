@@ -5,6 +5,8 @@
 
 Boing is an experimental program to teach us how to use classes and inheritence as well as file parsing. It reads a shape file and for each shape defined draws it to a window. The shapes move around the window.
 
+I have used git version control to keep track of my progress of the assignment. You can find the repo [here](https://github.com/Razzile/Boing) 
+(please note that I haven't exactly been using git very well)
 ### Shape format
 I have slightly modified the shape format so I can implement flashing shapes (see further down in the document).
 
