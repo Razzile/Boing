@@ -122,6 +122,28 @@ public class ReadShapeFile {
         return new Rect(insertionTime, px, py, vx, vy, width, height, clr, filled);
     }
 
+    private static Pentagon constructPentagon(Scanner in) {
+		in.skip("pentagon");
+
+		int px = in.nextInt();
+		int py = in.nextInt();
+		int vx = in.nextInt();
+		int vy = in.nextInt();
+		// should be filled
+		boolean filled = in.nextBoolean();
+		// diameter
+		int side = in.nextInt();
+		// red, green and blue colour values
+		int r = in.nextInt();
+		int g = in.nextInt();
+		int b = in.nextInt();
+		// insertion time
+		int insertionTime = in.nextInt();
+		Color clr = new Color(r, g, b);
+
+		return new Pentagon(insertionTime, px, py, vx, vy, side, clr, filled);
+	}
+
 	/**
 	 * Reads the data file used by the program and returns the constructed queue
 	 * @param in the scanner of the file
@@ -136,31 +158,35 @@ public class ReadShapeFile {
             Scanner lineScanner = new Scanner(line);
 			switch (shape) {
 				case "circle": {
-					Circle c = ReadShapeFile.constructCircle(lineScanner);
+					Circle c = constructCircle(lineScanner);
 					shapeQueue.enqueue(c);
 
 					break;
 				}
 				case "oval": {
-					Oval o = ReadShapeFile.constructOval(lineScanner);
+					Oval o = constructOval(lineScanner);
 					shapeQueue.enqueue(o);
 
 					break;
 				}
                 case "square": {
-                    Square s = ReadShapeFile.constructSquare(lineScanner);
-                    System.out.println(s);
+                    Square s = constructSquare(lineScanner);
                     shapeQueue.enqueue(s);
 
                     break;
                 }
                 case "rect": {
-                    Rect r = ReadShapeFile.constructRect(lineScanner);
-                    System.out.println(r);
+                    Rect r = constructRect(lineScanner);
                     shapeQueue.enqueue(r);
 
                     break;
                 }
+				case "pentagon": {
+					Pentagon p = constructPentagon(lineScanner);
+					shapeQueue.enqueue(p);
+
+					break;
+				}
 			}
 		}
 		
