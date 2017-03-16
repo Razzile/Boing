@@ -234,6 +234,7 @@ public class ReadShapeFile {
 				}
 			}
 			shapeQueue.enqueue(obj);
+			lineScanner.close();
 		}
 		
 		return shapeQueue;
