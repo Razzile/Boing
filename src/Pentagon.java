@@ -41,7 +41,7 @@ public class Pentagon extends ClosedShape {
      * @return width of pentagon
      */
     public int getWidth() {
-        return getHeight();
+        return (int)((side / 2) / (Math.cos(Math.PI / 5)));
     }
 
     /**
@@ -49,7 +49,9 @@ public class Pentagon extends ClosedShape {
      */
     public int getHeight() {
         // pentagon formula: height = side / 2 * √ (5 + 2) * √5
-        return (side / 2) * (int)Math.sqrt(5 + 2 + Math.sqrt(5));
+        double r = (side/ 2) / (2 * Math.sin(Math.PI / 5));
+        double height =  r * (1 + Math.cos(Math.PI / 5));
+        return (int)height;
     }
 
     /**
@@ -60,16 +62,15 @@ public class Pentagon extends ClosedShape {
         g.setColor(primaryColour);
         Polygon p = new Polygon();
 
-        // angle between indicies
-        double angle = 2 * Math.PI / 5;
-
         // equation for pentagon point at index i is:
         // (72 * cos(2pi/5 * n), 72 * sin(2pi/5 * n))
+        double angle = 2 * Math.PI / 5;
         for (int i = 0; i < 5; i++) {
-            int x = xPos + (int)(72 * Math.cos(angle * i));
-            int y = yPos + (int)(72 * Math.sin(angle * i));
+            int x = xPos + (int)Math.ceil((side * Math.cos(angle * i + -Math.PI / 2)));
+            int y = yPos + (int)Math.ceil((side * Math.sin(angle * i + -Math.PI / 2)));
             p.addPoint(x, y);
         }
+
         if (isFilled) {
             g.fillPolygon(p);
         } else {
