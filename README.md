@@ -29,6 +29,104 @@ definition: `rect 10 10 5 -5 5 10 true true 255 0 0 0 0 255 0`
 
 definition format: `<shape> <x> <y> <vx> <vy> <width> <height> <filled> <flashing> <r> <g> <b> <r2> <b2> <g2> <insertion time>`
 
+#### Shape definition table
+**Circle**
+| entry          | type    | description                                       |
+| -------------- | ------- | ------------------------------------------------- |
+| circle         | string  | defines the shape type as circle                  |
+| x              | int     | the x pos of the shape                            |
+| y              | int     | the y pos of the shape                            |
+| vx             | int     | the x velocity of the shape                       |
+| vy             | int     | the y velocity of the shape                       |
+| diameter       | int     | the diameter of the circle                        |
+| filled         | boolean | whether or not the shape should be filled         |
+| flashing       | boolean | whether or not the shape should be flashing       |
+| r              | int     | red value of shape's primary colour               |
+| g              | int     | green value of shape's primary colour             |
+| b              | int     | blue value of shape's primary colour              |
+| r2             | int     | red value of shape's secondary colour             |
+| g2             | int     | green value of shape's secondary colour           |
+| b2             | int     | blue value of shape's secondary colour            |
+| insertion time | int     | when the shape should be inserted into the window |
+
+**Oval**
+| entry          | type    | description                                       |
+| -------------- | ------- | ------------------------------------------------- |
+| oval           | string  | defines the shape type as oval                    |
+| x              | int     | the x pos of the shape                            |
+| y              | int     | the y pos of the shape                            |
+| vx             | int     | the x velocity of the shape                       |
+| vy             | int     | the y velocity of the shape                       |
+| width          | int     | the width of the shape                            |
+| height         | int     | the height of the shape                           |
+| filled         | boolean | whether or not the shape should be filled         |
+| flashing       | boolean | whether or not the shape should be flashing       |
+| r              | int     | red value of shape's primary colour               |
+| g              | int     | green value of shape's primary colour             |
+| b              | int     | blue value of shape's primary colour              |
+| r2             | int     | red value of shape's secondary colour             |
+| g2             | int     | green value of shape's secondary colour           |
+| b2             | int     | blue value of shape's secondary colour            |
+| insertion time | int     | when the shape should be inserted into the window |
+
+**Square**
+| entry          | type    | description                                       |
+| -------------- | ------- | ------------------------------------------------- |
+| square         | string  | defines the shape type as square                  |
+| x              | int     | the x pos of the shape                            |
+| y              | int     | the y pos of the shape                            |
+| vx             | int     | the x velocity of the shape                       |
+| vy             | int     | the y velocity of the shape                       |
+| side           | int     | the length of the sides                           |
+| filled         | boolean | whether or not the shape should be filled         |
+| flashing       | boolean | whether or not the shape should be flashing       |
+| r              | int     | red value of shape's primary colour               |
+| g              | int     | green value of shape's primary colour             |
+| b              | int     | blue value of shape's primary colour              |
+| r2             | int     | red value of shape's secondary colour             |
+| g2             | int     | green value of shape's secondary colour           |
+| b2             | int     | blue value of shape's secondary colour            |
+| insertion time | int     | when the shape should be inserted into the window |
+
+**Rect**
+| entry          | type    | description                                       |
+| -------------- | ------- | ------------------------------------------------- |
+| rect           | string  | defines the shape type as rect                    |
+| x              | int     | the x pos of the shape                            |
+| y              | int     | the y pos of the shape                            |
+| vx             | int     | the x velocity of the shape                       |
+| vy             | int     | the y velocity of the shape                       |
+| width          | int     | the width of the shape                            |
+| height         | int     | the height of the shape                           |
+| filled         | boolean | whether or not the shape should be filled         |
+| flashing       | boolean | whether or not the shape should be flashing       |
+| r              | int     | red value of shape's primary colour               |
+| g              | int     | green value of shape's primary colour             |
+| b              | int     | blue value of shape's primary colour              |
+| r2             | int     | red value of shape's secondary colour             |
+| g2             | int     | green value of shape's secondary colour           |
+| b2             | int     | blue value of shape's secondary colour            |
+| insertion time | int     | when the shape should be inserted into the window |
+
+**Pentagon**
+| entry          | type    | description                                       |
+| -------------- | ------- | ------------------------------------------------- |
+| pentagon       | string  | defines the shape type as pentagon                |
+| x              | int     | the x pos of the shape                            |
+| y              | int     | the y pos of the shape                            |
+| vx             | int     | the x velocity of the shape                       |
+| vy             | int     | the y velocity of the shape                       |
+| side           | int     | the length of the sides                           |
+| filled         | boolean | whether or not the shape should be filled         |
+| flashing       | boolean | whether or not the shape should be flashing       |
+| r              | int     | red value of shape's primary colour               |
+| g              | int     | green value of shape's primary colour             |
+| b              | int     | blue value of shape's primary colour              |
+| r2             | int     | red value of shape's secondary colour             |
+| g2             | int     | green value of shape's secondary colour           |
+| b2             | int     | blue value of shape's secondary colour            |
+| insertion time | int     | when the shape should be inserted into the window |
+
 ### Custom shape
 For my custom shape I decided to implement a pentagon. This proved to be quite a challenge as there was quite a lot of maths involved with drawing the shape. 
 
@@ -44,18 +142,18 @@ The pentagon format in the txt file mirrors that of square, the only difference 
 
 To implement flashing shapes I had to first create a new shape format for the .txt files. This format was documented above.
 
-I then had to reprogram the `ClosedShape`class to accept both a primary and secondary colour. I did this by making a new constructor that took the extra secondary colour. I also added a new member variable `secondaryColour` to accomodate the secondary colour.
+I then had to reprogram the `ClosedShape` class to accept both a primary and secondary colour. I did this by making a new constructor that took the extra secondary colour. I also added a new member variable `secondaryColour` to accomodate the secondary colour.
 
 I had to rewrite the constructors of all the subclasses of ClosedShape to adjust to this change, providing the new constructor format for them too.
 
 To make the shapes actually flash, I added the methods `shouldFlash()` and `flipColours()` to `ClosedShape`. `shouldFlash()` returns true if the secondary colour of the shape is not null and `flipColours()` switches the primary colour and secondary colour. 
-Then in the `BouncingShapesWindow` class, I added some code to the paint method of the anonymous JPanel class's `paint()` method to flip the colours if `shouldFLash()` was true.
+Then in the `BouncingShapesWindow` class, I added some code to the paint method of the anonymous JPanel class's `paint()` method to flip the colours if `shouldFLash()` was true. It did this every 15 frames by using the modulus operator on the `currentTime` variable and only flipping colours if `currentTime % 15 == 0`.
 
 ### Caveats
 Whilst I am quite pleased with my code, there are a few things I would have liked to change given I had more time. 
 
 1. The `construct*` functions in `ReadShapeFile` all share quite a lot of reused code. It would make more sense to supply a static function with a definition like `static ClosedShape constructShape(Scanner in)` in `ClosedShape` to construct a new shape from a scanner. Then the other shape classes could overload this method to parse data specific to them.
 
-2. The flashing occurs every frame. This is due to the code to flash being in the paint method, therefore being called every frame. This could possibly be fixed if `Graphics` or `JPanel` has some sort of timing function like a startTime or deltaTime which can be combined with a modulus of say 15 to only flash every 15 frames or so.
+2. The calculations for pentagon position, width and height are not accurate. This is due to the fact that `Graphics.drawPolygon()` and the `Polygon` class only accept integer values for points. My calculations resulted in decimal values so I had to cast these values to ints for use in my draw method.
 
 3. The shape format is pretty bad. If this were a production application I would've probably switched the shape definitions to a more standard format like JSON or XML
