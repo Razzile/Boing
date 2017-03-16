@@ -31,6 +31,7 @@ definition format: `<shape> <x> <y> <vx> <vy> <width> <height> <filled> <flashin
 
 #### Shape definition table
 **Circle**
+
 | entry          | type    | description                                       |
 | -------------- | ------- | ------------------------------------------------- |
 | circle         | string  | defines the shape type as circle                  |
@@ -50,6 +51,7 @@ definition format: `<shape> <x> <y> <vx> <vy> <width> <height> <filled> <flashin
 | insertion time | int     | when the shape should be inserted into the window |
 
 **Oval**
+
 | entry          | type    | description                                       |
 | -------------- | ------- | ------------------------------------------------- |
 | oval           | string  | defines the shape type as oval                    |
@@ -70,6 +72,7 @@ definition format: `<shape> <x> <y> <vx> <vy> <width> <height> <filled> <flashin
 | insertion time | int     | when the shape should be inserted into the window |
 
 **Square**
+
 | entry          | type    | description                                       |
 | -------------- | ------- | ------------------------------------------------- |
 | square         | string  | defines the shape type as square                  |
@@ -89,6 +92,7 @@ definition format: `<shape> <x> <y> <vx> <vy> <width> <height> <filled> <flashin
 | insertion time | int     | when the shape should be inserted into the window |
 
 **Rect**
+
 | entry          | type    | description                                       |
 | -------------- | ------- | ------------------------------------------------- |
 | rect           | string  | defines the shape type as rect                    |
@@ -109,6 +113,7 @@ definition format: `<shape> <x> <y> <vx> <vy> <width> <height> <filled> <flashin
 | insertion time | int     | when the shape should be inserted into the window |
 
 **Pentagon**
+
 | entry          | type    | description                                       |
 | -------------- | ------- | ------------------------------------------------- |
 | pentagon       | string  | defines the shape type as pentagon                |
