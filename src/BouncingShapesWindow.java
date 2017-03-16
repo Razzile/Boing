@@ -27,7 +27,7 @@ public class BouncingShapesWindow extends JFrame implements ActionListener
 	private static final int FRAME_WIDTH = 700;
 	private static final int FRAME_HEIGHT = 700;
 	private static final int ANIMATION_DELAY = 10;
-	
+
 	private int currentTime = 0;
 	private Timer animationTimer;
 	private JPanel drawingPanel;
@@ -56,9 +56,11 @@ public class BouncingShapesWindow extends JFrame implements ActionListener
 			    super.paintComponent (g);
 				for (ClosedShape s : activeShapes)
 				{
-					// if the shape should be flashing, invert its colours
-					if (s.shouldFlash()) {
-						s.flipColours();
+					// only switch colours every 15 frames
+					if (currentTime % 15 == 0) {
+						if (s.shouldFlash()) {
+							s.flipColours();
+						}
 					}
 					s.draw(g);
 				}
